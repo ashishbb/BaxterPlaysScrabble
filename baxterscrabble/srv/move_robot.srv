@@ -1,0 +1,5 @@
+bool isleftarm
+int64 action
+int64 target
+---
+bool success

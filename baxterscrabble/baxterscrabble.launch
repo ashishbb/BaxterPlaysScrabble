@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<launch>
+
+  <node pkg="baxterscrabble type="robot_interface.py" name="robot_interface" output="screen" args="0"/>
+
+  <node pkg="baxterscrabble" type="controller.py" name="controller" output="screen" args="2"/>
+
+  <node pkg="aldenandthechipmunks_proj1" type="starter.py" name="commander" output="screen" args="4 stacked_ascending stack_descending"/>
+
+</launch>
