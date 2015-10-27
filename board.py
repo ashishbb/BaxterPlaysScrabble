@@ -407,8 +407,11 @@ class Board(object):
 
             if solution.score > 0 and \
                     (best_solution is None or solution.score > best_solution.score):
-
-                best_solution = solution
+                if 'Z' in solution.word:
+                    if solution.score > 35:
+                        best_solution = solution
+                else:
+                    best_solution = solution
 
         return best_solution
 
@@ -427,32 +430,32 @@ class Board(object):
                 if self.is_blank[index]:
                     cell_string = cell.lower()
 
-                if PREMIUM_CELLS[index] == ".":
-                    background_color = 47
-                    foreground_color = 30
-                elif PREMIUM_CELLS[index] == "D":
-                    background_color = 101
-                    foreground_color = 30
-                elif PREMIUM_CELLS[index] == "T":
-                    background_color = 41
-                    foreground_color = 30
-                elif PREMIUM_CELLS[index] == "d":
-                    background_color = 106
-                    foreground_color = 30
-                elif PREMIUM_CELLS[index] == "t":
-                    background_color = 44
-                    foreground_color = 37
-                else:
-                    raise InvalidPremiumError()
+                # if PREMIUM_CELLS[index] == ".":
+                #     background_color = 47
+                #     foreground_color = 30
+                # elif PREMIUM_CELLS[index] == "D":
+                #     background_color = 101
+                #     foreground_color = 30
+                # elif PREMIUM_CELLS[index] == "T":
+                #     background_color = 41
+                #     foreground_color = 30
+                # elif PREMIUM_CELLS[index] == "d":
+                #     background_color = 106
+                #     foreground_color = 30
+                # elif PREMIUM_CELLS[index] == "t":
+                #     background_color = 44
+                #     foreground_color = 37
+                # else:
+                #     raise InvalidPremiumError()
 
-                if self.is_blank[index]:
-                    background_color = 43
-                    foreground_color = 30
+                # if self.is_blank[index]:
+                #     background_color = 43
+                #     foreground_color = 30
 
-                # 256-color Xterm code is \033[38;5;Xm or 48 for background.
-                # We're using 8-color mode here.
-                cell_string = u"\u001b[%d;%dm %s \u001b[0m" % (
-                        background_color, foreground_color, cell_string)
+                # # 256-color Xterm code is \033[38;5;Xm or 48 for background.
+                # # We're using 8-color mode here.
+                # cell_string = u"\u001b[%d;%dm %s \u001b[0m" % (
+                #         background_color, foreground_color, cell_string)
 
                 cols.append(cell_string)
             rows.append("".join(cols))
