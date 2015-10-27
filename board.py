@@ -270,6 +270,22 @@ class Board(object):
         solutions = []
         before = time.time()
 
+
+        print "RACKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK:  %s" % rack
+
+        pri_words = ['ANT']
+        overlap = 0
+        for pri_word in pri_words:
+            for c in pri_word:   
+                if c in rack:
+                    overlap+=1
+            if ((overlap/len(pri_word)) >= 2/3):
+                for i in pri_word:
+                    rack = re.sub(i,'',rack,count=1)
+
+        print "RACKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK:  %s" % rack
+        
+
         # For each direction.
         for direction in DIRECTIONS:
             # Try every line (row or column).
@@ -402,11 +418,20 @@ class Board(object):
 
         best_solution = None
 
+        #priority_words = ['CAT','MY','SEA','WOW','BOW','AGE','SAD','AT','AS','ALT','AN','TEA','ATE','EAT','IT']
+        
+
         for solution in solutions:
             solution.determine_score(self, dictionary)
 
+        #     for priority_word in priority_words:
+        #         if solution.word == priority_word:
+        #             print "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHHHHHHHHH Don't play word: %s." % solution.word
+        #                 if "C" in solution.word:
+        #                     print " CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC don't play words with c"
+        #                     continue
             if solution.score > 0 and \
-                    (best_solution is None or solution.score > best_solution.score):
+                (best_solution is None or solution.score > best_solution.score):
 
                 best_solution = solution
 
