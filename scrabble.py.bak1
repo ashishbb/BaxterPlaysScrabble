@@ -9,7 +9,6 @@ from dictionary import Dictionary
 from bag import generate_rack, get_full_bag
 
 import speech
-import time
 
 DICTIONARY_FILENAME = "dictionary"
 
@@ -26,25 +25,17 @@ def main():
 
     # Rack starts out empty.
     rack = ""
+
     count = 0
+
     # Keep playing until we're out of tiles or solutions.
-    while True:
+    while (count < 1):
         count = count + 1
         # Fill up our rack.
         print "Bag: %s" % "".join(bag)
         rack = generate_rack(rack, bag)
-        # rack = get_rack()
-        #if not rack:
-        #    break
-
-        # start_time = 0
-        # elapsed_time = 0
-        # wait_time = 8*60
-        # while (elapsed_time < wait_time)
-        #     if rack:
-        #         break
-        #     else:
-        #         elapsed_time = time.time() - start_time
+        if not rack:
+            break
 
         # Get a list of possible solutions. These aren't all necessarily legal.
         solutions = board.generate_solutions(rack, dictionary)
@@ -67,10 +58,9 @@ def main():
         print board
         speech.speak(solution)
 
-
-    # print "Winners:"
-    # for rack, winner in winners:
-    #     print "    %s: %s" % (rack, winner)
+    print "Winners:"
+    for rack, winner in winners:
+        print "    %s: %s" % (rack, winner)
 
 if __name__ == "__main__":
     main()

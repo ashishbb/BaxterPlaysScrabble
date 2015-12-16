@@ -10,6 +10,7 @@ from solution import Solution
 from bag import BLANK
 from board_exceptions import BoardError, OutsideError, TooManyBlanksError, InvalidPremiumError, MismatchLetterError
 
+
 # Premium cells.
 # http://en.wikipedia.org/wiki/Scrabble#Scoring
 # Legend:
@@ -271,19 +272,19 @@ class Board(object):
         before = time.time()
 
 
-        print "RACKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK:  %s" % rack
+        # print "RACKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK:  %s" % rack
 
-        pri_words = ['ANT']
-        overlap = 0
-        for pri_word in pri_words:
-            for c in pri_word:   
-                if c in rack:
-                    overlap+=1
-            if ((overlap/len(pri_word)) >= 2/3):
-                for i in pri_word:
-                    rack = re.sub(i,'',rack,count=1)
+        # pri_words = ['ANT']
+        # overlap = 0
+        # for pri_word in pri_words:
+        #     for c in pri_word:   
+        #         if c in rack:
+        #             overlap+=1
+        #     if ((overlap/len(pri_word)) >= 2/3):
+        #         for i in pri_word:
+        #             rack = re.sub(i,'',rack,count=1)
 
-        print "RACKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK:  %s" % rack
+        # print "RACKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK:  %s" % rack
         
 
         # For each direction.
