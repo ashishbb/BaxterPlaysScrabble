@@ -20,7 +20,6 @@ class UserInterface:
         self.mrun = newmain.main_runner(self)
         self.firstboard = True
         self.currentturn = 0
-        #self.root.iconbitmap(default='fav.xbm')
         #constants and fonts
         self.helv36 = tkFont.Font(family='Helvetica',size=36, weight='bold') 
         self.helv24 = tkFont.Font(family='Helvetica',size=24, weight='bold')
@@ -46,6 +45,7 @@ class UserInterface:
         #mainloop
         self.root.mainloop()
 
+    #add a lette to the board
     def addletter(self,letter,c,r,suggestion = False):
         if suggestion:
             self.letter = tk.Button(self.root, text=letter.upper(), 
@@ -55,6 +55,7 @@ class UserInterface:
                 bg='#EECFA1',fg='#8A360F',font=self.helv24)
         self.letter.place(x=5+self.tileoffsetx*c,y=5+self.tileoffsety*r)
 
+    #add a word to the board
     def addword(self,word,c,r,isdown,suggestion=False):
         count = 0
         print "isdown"
@@ -68,6 +69,7 @@ class UserInterface:
                 self.addletter(word[count],c+count,r,suggestion)
                 count += 1       
 
+        #callback function for correcting a letter on the board
     def correctletter(self,c,r):
         string = tkSimpleDialog.askstring('Letter Change', 'Please enter the new letter')
         if ' ' in string:
@@ -76,7 +78,10 @@ class UserInterface:
             self.confirmedboard[15*r+c] = string[0].upper()
         self.addletter(string[0].upper(),c,r)
 
+        #callback for performing the next set of main actions then switching gui button
     def swapbuttons(self):
+
+        #Case 1: red button is pressed to indicate that physical board is ready for cv
         if self.isred:
             self.mrun.main2()
             b = tk.Button(self.root, text="CLICK THIS WHEN YOU HAVE\nFIXED ALL THE ERRONEOUS TILES\nAND THE BOARD IS CORRECT", 
@@ -84,6 +89,8 @@ class UserInterface:
             b.grid(row=1, column=2,sticky=tk.E+tk.S+tk.W+tk.N)
             os.system('cd /home/cs4752/ros_ws')
             os.system('rosrun chipmunks_proj3 chipmunkplayer.py')
+
+        #Case 2: green button pressed to indicate board is correct on gui
         else:
             self.mrun.fixboard(self.confirmedboard)
             self.mrun.main3()
@@ -92,7 +99,6 @@ class UserInterface:
                 self.log.write('THE GAME IS OVER, THANK YOU')
                 while True:
                     return
-
             self.mrun.main1()
             b = tk.Button(self.root, text="CLICK THIS WHEN YOU'VE FINISHED\nYOUR MOVE AND FILLED YOUR RACK\nWITH NEW TILES", 
                 command=lambda:self.callback(), bd=5,bg='#F00',fg='#FFF',font=self.helv24)
@@ -100,6 +106,7 @@ class UserInterface:
             b.grid(row=1, column=2,sticky=tk.E+tk.S+tk.W+tk.N) 
         self.isred = not self.isred
 
+        #sync gui board from vision only in spots that havent been confirmed by user
     def full_board_update(self,boardcells):
         for i in range(len(boardcells)):
             if self.confirmedboard[i] == None and boardcells[i] != None:
@@ -113,19 +120,21 @@ class UserInterface:
             else:
                 self.addletter(self.confirmedboard[i],c,r)
 
+        #display rack
     def show_rack(self,rack):
         for i in range(len(rack)):
             rackletter = tk.Button(self.root, text=rack[i].upper(), 
                 command=lambda:self.correct_rack(i), bd=3,bg='#B11',fg='#FFF',font=self.helv24)
             rackletter.place(x=1060+self.tileoffsetx*i,y=470)
 
+        ##TODO##
     def correct_rack(self,index):
         pass
 
     def callback(self):
         self.swapbuttons()
 
-
+        #intial button callback
     def start(self):
         self.log.write('baxter is warming up his predictive skills, please wait a second')
         self.mrun.main0()

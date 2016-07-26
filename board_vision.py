@@ -5,6 +5,7 @@ import Classify
 
 def get_board(cl,camera):
 
+    ## find the 4 colored boxes around the rack, keep running until 4 boxes found
     camera = cv2.VideoCapture(0)
     print camera.isOpened()
 
@@ -17,6 +18,7 @@ def get_board(cl,camera):
         # cv2.imshow('not 4 green boxes',img)
         # cv2.waitKey(5)
 
+    ## map the 4 colored points to the 4 corners of a rectangle
     camera.release()
     cv2.destroyAllWindows()
 
@@ -76,6 +78,8 @@ def get_board(cl,camera):
     crops = []
     k = .006
 
+    ## for each of the 225 positions in the rack, cut out the part of the image with the letter inside it, apply morphological
+    ## transformations, then call the character recognition code to determine the letter in the area
     board =[]
     for i in range(0,15):
         for j in range(0,15):
@@ -147,6 +151,7 @@ def get_board(cl,camera):
     cv2.destroyAllWindows()
     return board
 
+## check to see if the space is colored (if we can see the color of a square, it isn't covered by a tile, and therefore should be blank)
 def not_colored(im):
     lower_red = np.array([0,0,80], dtype=np.uint8)
     upper_red = np.array([60,60,200], dtype=np.uint8)
@@ -209,19 +214,14 @@ def get_green_box_points(camera):
     ###############SETTINGS FOR GREEN BOXES################
     # lower_blue = np.array([40,105,70], dtype=np.uint8)
     # upper_blue = np.array([140,205,170], dtype=np.uint8) #today
-
-
     
     lower_blue = np.array([10,105,0], dtype=np.uint8) #worked last night
     upper_blue = np.array([95,205,75], dtype=np.uint8) #worked last night
 
-
-
     # upper_blue = np.array([75,245,105], dtype=np.uint8) #day
     # upper_blue = np.array([95,205,77], dtype=np.uint8) #night
     cl = Classify.Classify()
-# print 'YOURE RUNNING IT FROM THE IMPORT'
-# get_board(cl,1)
+
     #masking and morphological transformations to find green boxes
     mask = cv2.inRange(im, lower_blue, upper_blue)
     #cv2.imshow('clone5',mask)

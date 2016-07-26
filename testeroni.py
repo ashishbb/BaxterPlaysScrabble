@@ -1,5 +1,6 @@
 import cv2
 
+#Util to test which camera is pointed where
 
 def get_one():
   cam2 = cv2.VideoCapture(0)

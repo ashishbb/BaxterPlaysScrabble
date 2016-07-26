@@ -5,6 +5,7 @@ import Classify
 
 def get_rack(cl,cam2):
 
+    ## find the 4 colored boxes around the rack, keep running until 4 boxes found
     cam2 = cv2.VideoCapture(1)
     print cam2.isOpened()
 
@@ -14,6 +15,8 @@ def get_rack(cl,cam2):
         # cv2.imshow('not 4 green boxes',im3)
         # cv2.waitKey(8)
 
+
+    ## map the 4 colored points to the 4 corners of a rectangle 
     cam2.release()
     cv2.destroyAllWindows()
     xmid = 0.0
@@ -76,6 +79,8 @@ def get_rack(cl,cam2):
     across = np.array([(maxWidth)/8,0.0])
 
     rack = ''
+    ## for each of the 7 positions in the rack, cut out the part of the image with the letter inside it, apply morphological
+    ## transformations, then call the character recognition code to determine the letter in the area
     for i in range(0,7):
         clone = warp.copy()
         #cv2.imshow('tilesase',clone)
