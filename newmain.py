@@ -171,10 +171,8 @@ class main_runner:
         print self.old_board
 
     def main3(self): 
-        print"GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG"
         print self.update_board
         print self.old_board
-        print 'Gassadasdasdasdadasdasdasdasdasdasdasdasdasdasdasd'
         self.move,self.letter_placed_on_board = self.board.get_played_word(self.update_board,self.old_board,self.dictionary)
 
         print ("The word:"+ self.move.word +"was just played.")
@@ -189,7 +187,7 @@ class main_runner:
         if (self.move.word == self.solution.word):
             print("Player listened to Baxter")
         else:
-            print("Bitch defied Baxter")
+            print("defied Baxter")
 
         if (self.move.score != None):
             self.my_score+=self.move.score
@@ -218,11 +216,9 @@ class main_runner:
             print "    %s: %s" % (self.rack, self.winner)
 
     def fixboard(self,boardcells):
-        print 'old board in this bitch1'
         print self.old_board
         self.update_board = Board()
         self.update_board.set_cells(copy.deepcopy(boardcells))
-        print 'old board in this bitch'
         print self.old_board
 
 
