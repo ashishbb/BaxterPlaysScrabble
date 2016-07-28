@@ -9,7 +9,7 @@ This work represents the Masters of Engineering project by Sam Giampa and Ashish
 
 # Playing the game & Testing
 
-Begin the game by running ScrabbleGUI.py and follow on-screen instructions. Make no "opencv imshow" windows are spawning. 
+Begin the game by running ScrabbleGUI.py and follow on-screen instructions. Make no "opencv imshow" windows are spawning. In the current state of the code, the code will only run inside the "examples" folder of the Keras deep learning library. Datasets and keras import references should be changed to run the code outside of "examples".
 
 boardvision.py and rackvision.py are used to configure the computer vision settings for the board and rack respectively. Calibration is neeeded for varying amounts of sunlight. 
 We use a webcam pointed at both the board and rack to keep track of the state of the game. Board_vision.py and rack_vision.py interpret the feeds of the board and rack separately.
