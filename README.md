@@ -1,4 +1,4 @@
-## BaxterPlaysScrabble
+# BaxterPlaysScrabble
 
 Have you ever wanted to play scrabble with your Baxter robot? Well now you can!
 
@@ -7,7 +7,7 @@ By combining multiple scrabble solving AI with the robotic manipulation of the p
 This work represents the Masters of Engineering project by Sam Giampa and Ashish Bhatnagar at Cornell University.
 
 
-# Playing the game & Testing
+## Playing the game & Testing
 
 Begin the game by running ScrabbleGUI.py and follow on-screen instructions. Make no "opencv imshow" windows are spawning. In the current state of the code, the code will only run inside the "examples" folder of the Keras deep learning library. Datasets and keras import references should be changed to run the code outside of "examples".
 
@@ -19,7 +19,7 @@ Classification.py loads a trained neural network. Once the model is loaded, Clas
 
 Logic of maximizing points in each turn are located in board.py, solution.py, bag.py, direction.py, board_exceptions.py, and dictionary.py.
 
-# Top-level Dependencies
+## Top-level Dependencies
 
 OpenCV
 Theano
@@ -30,12 +30,12 @@ scipy
 festival
 baxter_interface
 
-# Future Work
+## Future Work
 
 Improve computer vision accuracy. 
 Improve deep learning accuracy. Training new, more specialized datasets may be helpful.
 
-# Credit
+## Credit
 
 The Scrabble basic maximizing algorithm was written by Lawrence Kesteloot. This library was altered to include prediction.
 
