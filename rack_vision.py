@@ -12,6 +12,7 @@ def get_rack(cl,cam2):
     points = get_orange_box_points(cam2)
     while not (len(points) == 4):
         points, im3 = get_orange_box_points(cam2)
+        # for testing
         # cv2.imshow('not 4 green boxes',im3)
         # cv2.waitKey(8)
 
@@ -176,6 +177,7 @@ def get_orange_box_points(cam2):
     im = cv2.drawKeypoints(im, keypoints, np.array([]), (0,255,0), cv2.DRAW_MATCHES_FLAGS_DRAW_RICH_KEYPOINTS)
     return (points , im)
 
+# for testing
 # cl = Classify.Classify()
 # print 'YOURE RUNNING IT FROM THE IMPORT'
 # get_rack(cl,1)

@@ -15,6 +15,7 @@ def get_board(cl,camera):
 
     while not (len(points) == 4):
         points, img = get_green_box_points(camera)
+        # for testing
         # cv2.imshow('not 4 green boxes',img)
         # cv2.waitKey(5)
 
@@ -250,6 +251,7 @@ def get_green_box_points(camera):
     im = cv2.drawKeypoints(im, keypoints, np.array([]), (0,255,0), cv2.DRAW_MATCHES_FLAGS_DRAW_RICH_KEYPOINTS)
     return (points , im)
 
+# for testing
 # cl = Classify.Classify()
 # print 'YOURE RUNNING IT FROM THE IMPORT'
 # get_board(cl,1)
