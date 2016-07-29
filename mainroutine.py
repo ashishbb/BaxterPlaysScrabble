@@ -72,7 +72,7 @@ def main():
         # cam1 = cv2.VideoCapture(1)
         # print cam1.isOpened()
         cam1 = 1
-        print "FUCKLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLRADD"
+
         rack = rack_vision.get_rack(classify,cam1)
         # cam1.release()
         cv2.destroyAllWindows()
@@ -113,7 +113,7 @@ def main():
         if (move == solution.word):
             print("Player listened to Baxter")
         else:
-            print("Bitch defied Baxter")
+            print("defied Baxter")
 
         print "Baxter's Score: %d" % my_score
 

@@ -108,7 +108,7 @@ def main():
         if (move == solution.word):
             print("Player listened to Baxter")
         else:
-            print("Bitch defied Baxter")
+            print("defied Baxter")
 
 
 
